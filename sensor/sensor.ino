@@ -1,5 +1,6 @@
 
-const int SENSOR_INPUT_PIN=2;
+const int SENSOR_INPUT_PIN=6;
+const int OPTO_OUTPUT_PIN=2;
 // Duration of the pulse in microseconds
 unsigned long pulseDuration;
 // Minmum duration of the pulse  to be taken into account
@@ -12,16 +13,14 @@ const unsigned long TIMEOUT_FOR_PULSE_INPUT = 180000000;
 
 void setup() {
     pinMode(SENSOR_INPUT_PIN, INPUT);
-    Serial.begin(9600);
+    pinMode(OPTO_OUTPUT_PIN, OUTPUT);
 }
  
 void loop() {
   pulseDuration = pulseInLong(SENSOR_INPUT_PIN, LOW, TIMEOUT_FOR_PULSE_INPUT);
-  Serial.print(pulseDuration);
   if (pulseDuration > minDuration) {
-    Serial.println(" OUI");
-  } else {
-    Serial.println(" NON");
+    digitalWrite(OPTO_OUTPUT_PIN, HIGH);
+    delay(100);
+    digitalWrite(OPTO_OUTPUT_PIN, LOW);
   }
-  Serial.flush();
 }
