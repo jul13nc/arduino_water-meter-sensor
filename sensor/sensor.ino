@@ -20,7 +20,7 @@ void loop() {
   pulseDuration = pulseInLong(SENSOR_INPUT_PIN, LOW, TIMEOUT_FOR_PULSE_INPUT);
   if (pulseDuration > minDuration) {
     digitalWrite(OPTO_OUTPUT_PIN, HIGH);
-    delay(100);
+    delay(200);
     digitalWrite(OPTO_OUTPUT_PIN, LOW);
   }
 }
